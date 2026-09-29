@@ -6,7 +6,8 @@ venv/
 .pytest_cache/
 
 # Personal data: your profile and applications
-profile/
+profile/*
+!profile/profile.example.json
 jobs/
 
 # OS and editor files

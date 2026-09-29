@@ -1,0 +1,193 @@
+{
+  "basics": {
+    "name": "Jordan Lee",
+    "email": "jordan.lee@example.com",
+    "phone": "416-555-0100",
+    "location": "Toronto, Canada",
+    "linkedin": "https://www.linkedin.com/in/jordan-lee-example/",
+    "github": "https://github.com/jordan-lee-example"
+  },
+  "preferences": {
+    "target_roles": ["Full-Stack Developer", "Applied AI Engineer"],
+    "page_limit": "auto",
+    "spelling": "auto",
+    "new_grad": true
+  },
+  "about": {
+    "role": "Full-stack developer / applied AI",
+    "available_to_work": true,
+    "short_bio": "Builds full-stack web apps and small AI tools, from prototype to production.",
+    "focus_areas": [
+      "Full-stack web apps with React and FastAPI",
+      "RAG pipelines and semantic search"
+    ],
+    "current_focus": "Shipping a document search assistant and learning ML fundamentals."
+  },
+  "work": [
+    {
+      "id": "acme",
+      "company": "Acme Analytics Inc.",
+      "title": "Software Developer Intern",
+      "location": "Remote",
+      "start": "2026-01",
+      "end": "2026-04",
+      "skills": ["Python", "FastAPI", "RAG", "React"],
+      "evidence": [
+        {
+          "id": "acme-01",
+          "result": "Built a RAG search tool that answers support questions from 1,200 help-centre articles.",
+          "how": "Chunked and embedded the articles, stored them in a vector database and served answers through FastAPI",
+          "metrics": [{"value": "1,200", "meaning": "help-centre articles indexed"}],
+          "skills": ["RAG", "Python", "FastAPI"],
+          "ai_used": true,
+          "raw_notes": "support team kept searching the help centre by hand. indexed about 1,200 articles and built a search tool on top"
+        },
+        {
+          "id": "acme-02",
+          "result": "Cut the weekly data clean-up from 5 hours to 1 hour.",
+          "how": "Wrote Python scripts that remove duplicates and fix formatting before import",
+          "metrics": [{"value": "5 hours to 1 hour", "meaning": "weekly clean-up time"}],
+          "skills": ["Python", "Data Pipelines"],
+          "ai_used": false
+        }
+      ]
+    },
+    {
+      "id": "pixel-studio",
+      "company": "Pixel & Co. Studio",
+      "title": "Frontend Developer Intern",
+      "location": "Toronto, ON",
+      "start": "2025-05",
+      "end": "2025-08",
+      "skills": ["React", "Tailwind CSS", "Figma"],
+      "evidence": [
+        {
+          "id": "pixel-studio-01",
+          "result": "Raised the landing page sign-up rate from 2.1% to 3.4%.",
+          "how": "Rebuilt the page in React and Tailwind CSS from Figma designs and ran A/B tests",
+          "metrics": [{"value": "2.1% to 3.4%", "meaning": "landing page sign-up rate"}],
+          "skills": ["React", "Tailwind CSS", "Figma"],
+          "ai_used": false
+        },
+        {
+          "id": "pixel-studio-02",
+          "result": "Brought the main pages up to WCAG accessibility standards.",
+          "how": "Audited the pages and fixed contrast, labels and keyboard navigation",
+          "metrics": [],
+          "skills": ["Accessibility (WCAG)"],
+          "ai_used": false
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "recipe-finder",
+      "name": "Recipe Finder",
+      "tagline": "Search recipes by what is in your fridge",
+      "categories": ["Full-stack"],
+      "tech_stack": ["React", "Node.js", "MongoDB"],
+      "demo": "https://recipe-finder.example.com",
+      "link": "https://github.com/jordan-lee-example/recipe-finder",
+      "evidence": [
+        {
+          "id": "recipe-finder-overview",
+          "result": "Search recipes by what is in your fridge",
+          "how": "Full-stack app with a React front end, a Node.js API and MongoDB storage.",
+          "skills": ["React", "Node.js", "MongoDB"],
+          "ai_used": false
+        },
+        {
+          "id": "recipe-finder-01",
+          "result": "Built ingredient search across 3,000 recipes with results in under 200 ms.",
+          "how": "MongoDB text indexes behind a Node.js API",
+          "metrics": [
+            {"value": "3,000", "meaning": "recipes searchable"},
+            {"value": "200 ms", "meaning": "search response time"}
+          ],
+          "skills": ["MongoDB", "Node.js"]
+        }
+      ]
+    },
+    {
+      "id": "email-triage-agent",
+      "name": "Email Triage Agent",
+      "tagline": "AI assistant that sorts email and drafts replies",
+      "categories": ["AI/ML"],
+      "tech_stack": ["Python", "LangGraph", "Gmail API"],
+      "link": "https://github.com/jordan-lee-example/email-triage-agent",
+      "evidence": [
+        {
+          "id": "email-triage-agent-overview",
+          "result": "AI assistant that sorts email and drafts replies",
+          "how": "A LangGraph agent reads unread email, sorts it into categories and drafts replies for review. It never sends anything on its own.",
+          "skills": ["Python", "LangGraph", "Gmail API"],
+          "ai_used": true
+        },
+        {
+          "id": "email-triage-agent-01",
+          "result": "Sorted 500 test emails into 4 categories with 92% accuracy.",
+          "how": "LangGraph agent with an LLM classifier, checked against hand-labelled emails",
+          "metrics": [
+            {"value": "500", "meaning": "test emails"},
+            {"value": "4", "meaning": "categories"},
+            {"value": "92%", "meaning": "classification accuracy"}
+          ],
+          "skills": ["LangGraph", "Python", "LLMs"],
+          "ai_used": true
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Example Polytechnic",
+      "degree": "BEng",
+      "field": "Software Engineering",
+      "location": "Toronto, ON",
+      "start": "2022-09",
+      "end": "2026-06",
+      "highlights": ["Machine Learning", "Data Structures & Algorithms"]
+    }
+  ],
+  "certificates": [
+    {"name": "AWS Certified Cloud Practitioner", "issuer": "Amazon Web Services", "date": "2025-11"}
+  ],
+  "skills": [
+    {"name": "JavaScript / TypeScript", "category": "Languages", "aliases": ["JavaScript", "TypeScript"]},
+    {"name": "Python", "category": "Languages"},
+    {"name": "SQL", "category": "Languages"},
+    {"name": "React", "category": "Frontend & Backend"},
+    {"name": "Node.js", "category": "Frontend & Backend"},
+    {"name": "FastAPI", "category": "Frontend & Backend"},
+    {"name": "Tailwind CSS", "category": "Frontend & Backend"},
+    {"name": "MongoDB", "category": "Databases & Cloud"},
+    {"name": "PostgreSQL", "category": "Databases & Cloud"},
+    {"name": "RAG pipelines", "category": "AI / ML", "aliases": ["RAG", "Retrieval-Augmented Generation"]},
+    {"name": "LangGraph", "category": "AI / ML"},
+    {"name": "Git / GitHub", "category": "Tools", "aliases": ["Git", "GitHub"]},
+    {"name": "Figma", "category": "Tools"}
+  ],
+  "hackathons": [
+    {
+      "name": "Example City Hackathon 2025",
+      "role": "Backend developer",
+      "project": "Recipe Finder",
+      "note": "Built the search API in a 24-hour team sprint."
+    }
+  ],
+  "volunteering": [
+    {
+      "role": "Coding club mentor",
+      "location": "Toronto, ON",
+      "year": "2024",
+      "impact": "Ran weekly Python sessions for 15 high-school students."
+    }
+  ],
+  "contact": {
+    "cta_title": "Let's build something",
+    "cta_body": "Open to full-stack and applied AI roles.",
+    "primary_email": "jordan.lee@example.com",
+    "preferred_contact": "Email or LinkedIn"
+  }
+}

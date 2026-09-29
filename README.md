@@ -90,7 +90,7 @@ resume-engine/
 ├── scripts/       validate, render, score, finalize (no AI)
 ├── templates/     PDF layout (Typst) and the job note template
 ├── tests/         tests and made-up sample data
-├── profile/       your profile (kept out of git)
+├── profile/       your profile (kept out of git) and profile.example.json
 └── jobs/          one folder per application (kept out of git)
 ```
 
@@ -103,4 +103,4 @@ resume-engine/
 Planned and built with Claude Code as a weekend project.
 
 ## Privacy
-`profile/` and `jobs/` hold your name, contact details and work history, so `.gitignore` keeps them out of git. Keep it that way if the repo is public.
+`profile/profile.json` and `jobs/` hold your name, contact details and work history, so `.gitignore` keeps them out of git. Keep it that way if the repo is public. Only `profile/profile.example.json` is published, as a sample to copy.
