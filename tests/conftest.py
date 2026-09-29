@@ -55,8 +55,8 @@ def make_pdf(config):
             lines.append(render.HEADINGS[key].upper())
             if key == "summary":
                 lines.append(data["summary"])
-            elif key == "skills":
-                lines += [f'{s["category"]}: {", ".join(s["items"])}' for s in data["skills"]]
+            elif key in ("skills", "achievements"):
+                lines += [f'{s["category"]}: {", ".join(s["items"])}' for s in data[key]]
             elif key == "certifications":
                 lines += data["certifications"]
             else:

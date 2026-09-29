@@ -117,10 +117,16 @@
     }
   ],
   "education": [
-    {"institution": "University of Leeds", "degree": "BSc Mathematics", "location": "Leeds, UK", "start": "2016-09", "end": "2019-06"}
+    {"institution": "University of Leeds", "degree": "BSc Mathematics", "location": "Leeds, UK", "start": "2016-09", "end": "2019-06", "coursework": ["Linear Algebra", "Probability & Statistics"]}
   ],
   "certificates": [
     {"name": "Microsoft Certified: Power BI Data Analyst Associate", "issuer": "Microsoft", "date": "2023-05"}
+  ],
+  "achievements": [
+    {"name": "Northern Data Hackathon 2021", "category": "Hackathons & Competitions", "role": "Data analyst"}
+  ],
+  "links": [
+    {"label": "Portfolio", "url": "alexmorgan.example.com"}
   ],
   "skills": [
     {"name": "SQL", "category": "Languages"},

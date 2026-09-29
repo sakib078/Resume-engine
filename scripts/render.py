@@ -15,6 +15,7 @@ HEADINGS = {
     "projects": "Projects",
     "education": "Education",
     "certifications": "Certifications",
+    "achievements": "Achievements",
 }
 
 
@@ -54,6 +55,7 @@ def section_order(resume):
         "projects": resume.get("projects"),
         "education": resume.get("education"),
         "certifications": resume.get("certificates"),
+        "achievements": resume.get("achievements"),
     }
     order = list(HEADINGS)
     if resume.get("education_first"):
@@ -62,9 +64,9 @@ def section_order(resume):
     return [key for key in order if filled[key]]
 
 
-def entry(title, dates, sub, bullets):
-    """One heading line plus bullet texts, as the template expects."""
-    return {"title": title, "dates": dates, "sub": sub, "bullets": [b["text"] for b in bullets]}
+def entry(title, dates, sub, bullets, note_label="", note=""):
+    """One heading line, an optional labelled note and bullet texts, as the template expects."""
+    return {"title": title, "dates": dates, "sub": sub, "note_label": note_label, "note": note, "bullets": [b["text"] for b in bullets]}
 
 
 def display_data(resume, config):
@@ -75,7 +77,8 @@ def display_data(resume, config):
         "fonts": config["render"]["fonts"],
         "name": basics["name"],
         "tagline": resume.get("tagline", ""),
-        "contact": [basics[k] for k in ("email", "phone", "location", "linkedin", "website", "github") if basics.get(k)],
+        "contact": [basics[k] for k in ("email", "phone", "location", "linkedin", "website", "github") if basics.get(k)]
+        + [link["url"] for link in resume.get("links", [])],
         "headings": HEADINGS,
         "order": section_order(resume),
         "summary": resume.get("summary", ""),
@@ -94,6 +97,8 @@ def display_data(resume, config):
                 fmt_month(e.get("end")),
                 join(e["institution"], e.get("location"), sep=", "),
                 [],
+                "Relevant coursework" if e.get("coursework") else "",
+                ", ".join(e.get("coursework", [])),
             )
             for e in resume.get("education", [])
         ],
@@ -101,6 +106,7 @@ def display_data(resume, config):
             join(c["name"], join(c.get("issuer"), fmt_month(c.get("date")), sep=", "), sep=" — ")
             for c in resume.get("certificates", [])
         ],
+        "achievements": resume.get("achievements", []),
     }
 
 

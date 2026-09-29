@@ -30,6 +30,8 @@
     "projects": {"type": "array", "items": {"$ref": "#/$defs/project"}},
     "education": {"type": "array", "items": {"$ref": "#/$defs/education"}},
     "certificates": {"type": "array", "items": {"$ref": "#/$defs/certificate"}},
+    "achievements": {"type": "array", "items": {"$ref": "#/$defs/achievement"}},
+    "links": {"type": "array", "items": {"$ref": "#/$defs/link"}},
     "skills": {"type": "array", "items": {"$ref": "#/$defs/skill"}}
   },
   "$defs": {
@@ -95,7 +97,8 @@
         "grade": {"type": "string"},
         "location": {"type": "string"},
         "start": {"$ref": "#/$defs/month"},
-        "end": {"$ref": "#/$defs/end"}
+        "end": {"$ref": "#/$defs/end"},
+        "coursework": {"type": "array", "items": {"type": "string"}}
       }
     },
     "certificate": {
@@ -105,6 +108,27 @@
         "name": {"type": "string"},
         "issuer": {"type": "string"},
         "date": {"$ref": "#/$defs/month"}
+      }
+    },
+    "achievement": {
+      "type": "object",
+      "required": ["name", "category"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "category": {"type": "string", "minLength": 1},
+        "role": {"type": "string"},
+        "project": {"type": "string"},
+        "note": {"type": "string"},
+        "date": {"$ref": "#/$defs/month"},
+        "link": {"type": "string"}
+      }
+    },
+    "link": {
+      "type": "object",
+      "required": ["label", "url"],
+      "properties": {
+        "label": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "minLength": 1}
       }
     },
     "skill": {

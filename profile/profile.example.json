@@ -147,7 +147,7 @@
       "location": "Toronto, ON",
       "start": "2022-09",
       "end": "2026-06",
-      "highlights": ["Machine Learning", "Data Structures & Algorithms"]
+      "coursework": ["Machine Learning", "Data Structures & Algorithms", "Database Design"]
     }
   ],
   "certificates": [
@@ -168,13 +168,17 @@
     {"name": "Git / GitHub", "category": "Tools", "aliases": ["Git", "GitHub"]},
     {"name": "Figma", "category": "Tools"}
   ],
-  "hackathons": [
+  "achievements": [
     {
       "name": "Example City Hackathon 2025",
+      "category": "Hackathons & Competitions",
       "role": "Backend developer",
       "project": "Recipe Finder",
       "note": "Built the search API in a 24-hour team sprint."
     }
+  ],
+  "links": [
+    {"label": "Portfolio", "url": "https://jordan-lee.example.com"}
   ],
   "volunteering": [
     {

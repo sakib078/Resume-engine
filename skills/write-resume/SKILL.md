@@ -8,7 +8,7 @@ description: Write or revise one tailored résumé version (jobs/<slug>/resume.v
 Read `jobs/<slug>/analysis.json`, `jobs/<slug>/match.json`, `profile/profile.json`, `rules/resume-rules.md` and `rules/examples.md`.
 
 ## New version (N = 1)
-1. **basics:** copy from the profile unchanged.
+1. **basics** and **links:** copy from the profile unchanged. Links go in the header, so keep only the ones worth showing for this job.
 2. **work:** for each selected role, in profile order, copy `role_id`, `company`, `title`, `location`, `start` and `end` exactly (EVD-04). Write one bullet per selected evidence item, in the selected order:
    - XYZ, result first when there's a metric (BUL-01). With no metric, write a concrete bullet without a number (BUL-09).
    - Start with a past-tense verb from `rules/action-verbs.txt` (BUL-02). No verb starts more than 2 bullets (BUL-07).
@@ -23,7 +23,7 @@ Read `jobs/<slug>/analysis.json`, `jobs/<slug>/match.json`, `profile/profile.jso
    - Include the job title's core words and the top 3 required keywords the profile supports.
    - Put the evidence behind any number you use in `summary_evidence_ids`. The only exception is years of experience the profile supports.
 5. **skills:** up to 8 categories (use the profile's), each with up to 6 items from `match.skills`, most relevant first. If the job names one of your skills differently (a lexicon alias), use the job's name (SKL-01 to SKL-03).
-6. **education** and **certificates:** copy from the profile exactly. Set `education_first` to `profile.preferences.new_grad`.
+6. **education**, **certificates** and **achievements:** copy from the profile exactly. Set `education_first` to `profile.preferences.new_grad`. For `coursework`, use the profile's course names, most relevant to the job first. Group achievements as `{category, items}` using the profile's `category` and `name`, most relevant first. If the page is full, drop the least relevant courses and achievements before cutting any bullet.
 7. **Spelling:** follow `analysis.job.spelling` unless `profile.preferences.spelling` is set (KW-07).
 8. **Length:** fit the page limit (LEN-01). Cut the oldest, least relevant bullets first (LEN-03).
 9. **changes:** change-log rows `{section, change, why}` saying what you emphasised or left out for this job, and why.

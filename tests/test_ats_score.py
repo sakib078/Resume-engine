@@ -48,6 +48,22 @@ def test_evidence_from_another_role_fails_gate(resume, analysis, profile, config
     assert not gate(report, "EVD-02")["ok"]
 
 
+def test_unknown_coursework_fails_gate(resume, analysis, profile, config, rules, make_pdf):
+    bad = copy.deepcopy(resume)
+    bad["education"][0]["coursework"].append("Quantum Computing")
+    report = run(bad, analysis, profile, config, rules, make_pdf)
+    assert not gate(report, "EVD-04")["ok"]
+
+
+def test_unknown_achievement_or_link_fails_gate(resume, analysis, profile, config, rules, make_pdf):
+    bad = copy.deepcopy(resume)
+    bad["achievements"][0]["items"].append("Imaginary Award 2024")
+    bad["links"].append({"label": "Blog", "url": "blog.example.com"})
+    report = run(bad, analysis, profile, config, rules, make_pdf)
+    detail = " ".join(gate(report, "EVD-04")["detail"])
+    assert "Imaginary Award 2024" in detail and "blog.example.com" in detail
+
+
 def test_repeated_keyword_loses_points(resume, analysis, profile, config, rules, make_pdf):
     clean = run(resume, analysis, profile, config, rules, make_pdf)
     stuffed = copy.deepcopy(resume)

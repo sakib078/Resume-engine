@@ -154,7 +154,10 @@ def keyword_table(analysis, profile, rules, config):
     ev_texts = {i: clean(evidence_text(ev)) for i, (_, ev) in evidence_index(profile).items()}
     roles = [f'{w["title"]} {w.get("summary", "")}' for w in profile.get("work", [])]
     context = clean("\n".join([*ev_texts.values(), *roles]))
-    skills = clean(" ; ".join(n for s in profile.get("skills", []) for n in [s["name"], *s.get("aliases", [])]))
+    listed = [n for s in profile.get("skills", []) for n in [s["name"], *s.get("aliases", [])]]
+    listed += [c for e in profile.get("education", []) for c in e.get("coursework", [])]
+    listed += [c["name"] for c in profile.get("certificates", [])]
+    skills = clean(" ; ".join(listed))
     table = []
     for k in analysis["keywords"]:
         rx = keyword_regex(variants(k["term"], k.get("aliases", []), rules["groups"]))
@@ -180,7 +183,7 @@ def ceiling(table, config):
 
 
 def fact_mismatches(resume, profile):
-    """Employers, titles, dates, degrees and certificates that differ from the profile."""
+    """Employers, titles, dates, degrees, certificates, achievements and links that differ from the profile."""
     out = []
     roles = {w["id"]: w for w in profile.get("work", [])}
     for w in resume.get("work", []):
@@ -198,10 +201,15 @@ def fact_mismatches(resume, profile):
     schools = {(e["institution"], e["degree"]): e for e in profile.get("education", [])}
     for e in resume.get("education", []):
         src = schools.get((e["institution"], e["degree"]))
-        if not src or any(e.get(f) and e[f] != src.get(f) for f in ("field", "grade", "start", "end")):
-            out.append(f'education "{e["degree"]}, {e["institution"]}" does not match the profile')
+        unknown = [c for c in e.get("coursework", []) if src and c not in src.get("coursework", [])]
+        if not src or unknown or any(e.get(f) and e[f] != src.get(f) for f in ("field", "grade", "start", "end")):
+            out.append(f'education "{e["degree"]}, {e["institution"]}" does not match the profile' + (f"; unknown coursework {unknown}" if unknown else ""))
     certs = {c["name"] for c in profile.get("certificates", [])}
     out += [f'certificate "{c["name"]}" is not in the profile' for c in resume.get("certificates", []) if c["name"] not in certs]
+    names = {a["name"].lower() for a in profile.get("achievements", [])}
+    out += [f'achievement "{item}" is not in the profile' for a in resume.get("achievements", []) for item in a["items"] if item.lower() not in names]
+    urls = {link["url"] for link in profile.get("links", [])}
+    out += [f'link "{link["url"]}" is not in the profile' for link in resume.get("links", []) if link["url"] not in urls]
     return out
 
 
@@ -248,10 +256,13 @@ def gates(resume, profile, pdf, rules, limit, today):
 
 
 def keyword_part(resume, table, config):
-    """Keyword coverage: full credit in context, partial in Skills only, minus repetition."""
+    """Keyword coverage: full credit in context, partial in Skills, coursework or certificates only, minus repetition."""
     kw, weight = config["keywords"], config["score"]["weights"]["keywords"]
     text = prose(resume)
-    skills = clean(" ; ".join(item for c in resume.get("skills", []) for item in c["items"]))
+    listed = [item for c in resume.get("skills", []) for item in c["items"]]
+    listed += [c for e in resume.get("education", []) for c in e.get("coursework", [])]
+    listed += [c["name"] for c in resume.get("certificates", [])]
+    skills = clean(" ; ".join(listed))
     total = sum(k["weight"] for k in table) or 1
     got, terms, fixes = 0.0, [], []
     for k in table:
@@ -266,7 +277,7 @@ def keyword_part(resume, table, config):
             backing = ", ".join(k["evidence"][:3]) or "your role titles"
             fixes.append(fix("KW-04", f'{k["importance"].capitalize()} keyword "{k["term"]}" is backed by {backing} but not used in a bullet or the summary.', True, gain))
         elif gain > 0:
-            fixes.append(fix("KW-04", f'Add "{k["term"]}" to the Skills section; it is in your profile skills.', True, gain))
+            fixes.append(fix("KW-04", f'Show "{k["term"]}" in Skills, coursework or certificates, wherever your profile has it.', True, gain))
     over = sum(1 for t in terms if t["uses"] > kw["max_repeats"])
     return {"points": max(0.0, weight * got / total - kw["repeat_penalty"] * over), "terms": terms}, fixes
 

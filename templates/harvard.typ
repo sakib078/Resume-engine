@@ -25,6 +25,7 @@
       emph(e.sub)
     }
   })
+  if e.note != "" { block(above: 0.3em, below: 0.3em, strong(e.note_label + ":") + " " + e.note) }
   if e.bullets.len() > 0 { list(..e.bullets) }
 }
 
@@ -39,8 +40,8 @@
   section(data.headings.at(key))
   if key == "summary" {
     data.summary
-  } else if key == "skills" {
-    for s in data.skills {
+  } else if key in ("skills", "achievements") {
+    for s in data.at(key) {
       block(below: 0.35em, strong(s.category + ":") + " " + s.items.join(", "))
     }
   } else if key == "certifications" {

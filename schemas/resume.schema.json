@@ -20,6 +20,18 @@
         "github": {"type": "string"}
       }
     },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "url"],
+        "properties": {
+          "label": {"type": "string", "minLength": 1},
+          "url": {"type": "string", "minLength": 1}
+        }
+      }
+    },
     "tagline": {"type": "string", "minLength": 1, "maxLength": 120},
     "summary": {"type": "string", "minLength": 1},
     "summary_evidence_ids": {"type": "array", "items": {"type": "string"}},
@@ -84,7 +96,8 @@
           "grade": {"type": "string"},
           "location": {"type": "string"},
           "start": {"$ref": "#/$defs/month"},
-          "end": {"$ref": "#/$defs/end"}
+          "end": {"$ref": "#/$defs/end"},
+          "coursework": {"type": "array", "items": {"type": "string"}}
         }
       }
     },
@@ -98,6 +111,19 @@
           "name": {"type": "string"},
           "issuer": {"type": "string"},
           "date": {"$ref": "#/$defs/month"}
+        }
+      }
+    },
+    "achievements": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["category", "items"],
+        "properties": {
+          "category": {"type": "string", "minLength": 1},
+          "items": {"type": "array", "minItems": 1, "maxItems": 6, "items": {"type": "string"}}
         }
       }
     },

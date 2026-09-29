@@ -8,6 +8,9 @@
     "linkedin": "linkedin.com/in/alex-morgan-example",
     "github": "github.com/alexmorgan-example"
   },
+  "links": [
+    {"label": "Portfolio", "url": "alexmorgan.example.com"}
+  ],
   "tagline": "Data analyst turning operational data into self-serve Power BI reporting with SQL, dbt and Snowflake",
   "summary": "Data analyst with 7 years of experience building the reporting and data models that operations and finance teams rely on. Cut weekly sales reporting from 6 hours to 45 minutes and introduced the first dbt star schema, giving finance and product one definition of active customer. Comfortable owning a problem end to end, from scoping with stakeholders to explaining results to non-technical leaders.",
   "summary_evidence_ids": ["brightcart-01", "brightcart-04", "brightcart-03"],
@@ -61,10 +64,13 @@
     }
   ],
   "education": [
-    {"institution": "University of Leeds", "degree": "BSc Mathematics", "location": "Leeds, UK", "start": "2016-09", "end": "2019-06"}
+    {"institution": "University of Leeds", "degree": "BSc Mathematics", "location": "Leeds, UK", "start": "2016-09", "end": "2019-06", "coursework": ["Probability & Statistics", "Linear Algebra"]}
   ],
   "certificates": [
     {"name": "Microsoft Certified: Power BI Data Analyst Associate", "issuer": "Microsoft", "date": "2023-05"}
+  ],
+  "achievements": [
+    {"category": "Hackathons & Competitions", "items": ["Northern Data Hackathon 2021"]}
   ],
   "changes": [
     {"section": "Summary", "change": "Led with the reporting speed-up and the dbt star schema", "why": "Answers P1 (manual reporting) and P3 (one source of truth for KPIs)"},
