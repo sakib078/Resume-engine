@@ -10,6 +10,11 @@ It's built for AI coding agents (Claude Code, Codex CLI, Gemini CLI and others).
 
 ## How it works
 
+![How it works: add the job, analyse, match, checkpoint, write-and-check loop, ready to send](docs/how-it-works.svg)
+
+<details>
+<summary>Text version</summary>
+
 ```
 job post + company note
 │
@@ -35,6 +40,12 @@ job post + company note
     └── Checkpoint 2 (you)
            finalize.py (code) → First_Last_Company_Role.pdf + report.md
 ```
+
+</details>
+
+## Architecture
+
+![Architecture: skills, scripts, rules, contracts and your data](docs/architecture.svg)
 
 ## The one rule: nothing made up
 Every line on the résumé points to a fact in your profile, and every number must match that fact. The code checks this, and if one line fails, the résumé is blocked. If the job asks for something you don't have, the report lists it as a gap. It is never added.
@@ -72,6 +83,7 @@ resume-engine/
 ├── AGENTS.md      start here: instructions for the AI agent
 ├── CLAUDE.md      points Claude Code to AGENTS.md
 ├── config.toml    score weights, target, paper size, fonts
+├── docs/          the diagrams in this README
 ├── skills/        the 6 AI steps, one SKILL.md each
 ├── rules/         rulebook, action verbs, banned phrases, keyword list
 ├── schemas/       the shape every JSON file must have

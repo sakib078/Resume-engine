@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="840" viewBox="0 0 1200 840" role="img" aria-labelledby="title desc">
+  <title id="title">How Resume-engine works</title>
+  <desc id="desc">Six steps from a job post to a résumé PDF: add the job, analyse, match, checkpoint, a write-and-check loop of up to three rounds, and a final PDF with a report.</desc>
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; fill: #34323f; }
+      .h1 { font-size: 40px; font-weight: 600; fill: #6e56cf; }
+      .lead { font-size: 17px; fill: #8b8997; }
+      .legend { font-size: 13px; fill: #7a7887; }
+      .card-title { font-size: 18px; font-weight: 600; fill: #2f2d3b; }
+      .desc { font-size: 13.5px; fill: #6f6d7c; }
+      .pill { font-size: 12.5px; fill: #5b5968; }
+      .num { font-size: 15px; font-weight: 700; }
+      .chip { font-size: 11.5px; font-weight: 700; letter-spacing: 0.8px; }
+      .node { font-size: 15px; font-weight: 600; fill: #2f2d3b; }
+      .node-sub { font-size: 12px; fill: #7a7887; }
+      .note { font-size: 12.5px; font-style: italic; fill: #8b8997; }
+      .tiny { font-size: 7.5px; font-weight: 700; }
+      .strip { font-size: 13.5px; fill: #4a4858; }
+      .ai { fill: #6e56cf; }
+      .code { fill: #2f8a66; }
+      .you { fill: #bf6a33; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#aeabbe"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#6e56cf" flood-opacity="0.08"/>
+    </filter>
+    <pattern id="dots" width="15" height="15" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="2.4" fill="#d9d1fa"/>
+    </pattern>
+    <clipPath id="card"><rect width="1200" height="840" rx="28"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <rect width="1200" height="840" fill="#f5f4f9"/>
+    <g stroke="#ebe9f2" stroke-width="1">
+      <line x1="240" y1="0" x2="240" y2="840"/>
+      <line x1="480" y1="0" x2="480" y2="840"/>
+      <line x1="720" y1="0" x2="720" y2="840"/>
+      <line x1="960" y1="0" x2="960" y2="840"/>
+    </g>
+    <rect x="1062" y="37" width="90" height="90" fill="url(#dots)"/>
+    <rect x="30" y="770" width="90" height="60" fill="url(#dots)"/>
+  </g>
+
+  <text class="h1" x="80" y="96">How it works</text>
+  <text class="lead" x="80" y="134">From a job post to a PDF you can send. The AI writes, the code checks, and you approve.</text>
+
+  <circle cx="86" cy="167" r="5" fill="#b9a9f5"/>
+  <text class="legend" x="98" y="172">AI step</text>
+  <circle cx="175" cy="167" r="5" fill="#9fd6bd"/>
+  <text class="legend" x="187" y="172">Code (no AI)</text>
+  <circle cx="298" cy="167" r="5" fill="#f2c4a4"/>
+  <text class="legend" x="310" y="172">You</text>
+
+  <!-- Row 1 connectors -->
+  <g stroke="#b3b0c2" stroke-width="1.4" fill="none">
+    <line x1="297" y1="315" x2="341" y2="315" marker-end="url(#arrow)"/>
+    <line x1="577" y1="315" x2="621" y2="315" marker-end="url(#arrow)"/>
+    <line x1="857" y1="315" x2="901" y2="315" marker-end="url(#arrow)"/>
+    <path d="M1020 427 V446 Q1020 454 1012 454 H458 Q450 454 450 462 V477" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- 1. Add the job -->
+  <rect x="65" y="205" width="230" height="220" rx="16" fill="#ffffff" stroke="#e6e2f3" filter="url(#shadow)"/>
+  <circle cx="103" cy="247" r="18" fill="#fdf1e8"/>
+  <text class="num you" x="103" y="252.5" text-anchor="middle">1</text>
+  <rect x="227" y="235" width="50" height="24" rx="12" fill="#fdf1e8"/>
+  <text class="chip you" x="252" y="251.5" text-anchor="middle">YOU</text>
+  <text class="card-title" x="87" y="301">Add the job</text>
+  <text class="desc" x="87" y="329">Paste the job post and</text>
+  <text class="desc" x="87" y="349">a note on the company,</text>
+  <text class="desc" x="87" y="369">next to your profile.</text>
+  <rect x="87" y="385" width="160" height="26" rx="8" fill="#f6f5fa" stroke="#ebe9f2"/>
+  <text class="pill" x="99" y="402.5">jd.md + profile.json</text>
+
+  <!-- 2. Analyse -->
+  <rect x="345" y="205" width="230" height="220" rx="16" fill="#ffffff" stroke="#e6e2f3" filter="url(#shadow)"/>
+  <circle cx="383" cy="247" r="18" fill="#f3f0ff"/>
+  <text class="num ai" x="383" y="252.5" text-anchor="middle">2</text>
+  <rect x="517" y="235" width="40" height="24" rx="12" fill="#f3f0ff"/>
+  <text class="chip ai" x="537" y="251.5" text-anchor="middle">AI</text>
+  <text class="card-title" x="367" y="301">Analyse</text>
+  <text class="desc" x="367" y="329">Finds what the employer</text>
+  <text class="desc" x="367" y="349">needs most, and the</text>
+  <text class="desc" x="367" y="369">keywords that matter.</text>
+  <rect x="367" y="385" width="112" height="26" rx="8" fill="#f6f5fa" stroke="#ebe9f2"/>
+  <text class="pill" x="379" y="402.5">analysis.json</text>
+
+  <!-- 3. Match -->
+  <rect x="625" y="205" width="230" height="220" rx="16" fill="#ffffff" stroke="#e6e2f3" filter="url(#shadow)"/>
+  <circle cx="663" cy="247" r="18" fill="#f3f0ff"/>
+  <text class="num ai" x="663" y="252.5" text-anchor="middle">3</text>
+  <rect x="797" y="235" width="40" height="24" rx="12" fill="#f3f0ff"/>
+  <text class="chip ai" x="817" y="251.5" text-anchor="middle">AI</text>
+  <text class="card-title" x="647" y="301">Match</text>
+  <text class="desc" x="647" y="329">Links each need to proof</text>
+  <text class="desc" x="647" y="349">in your profile, and</text>
+  <text class="desc" x="647" y="369">lists what's missing.</text>
+  <rect x="647" y="385" width="94" height="26" rx="8" fill="#f6f5fa" stroke="#ebe9f2"/>
+  <text class="pill" x="659" y="402.5">match.json</text>
+
+  <!-- 4. Checkpoint -->
+  <rect x="905" y="205" width="230" height="220" rx="16" fill="#ffffff" stroke="#e6e2f3" filter="url(#shadow)"/>
+  <circle cx="943" cy="247" r="18" fill="#fdf1e8"/>
+  <text class="num you" x="943" y="252.5" text-anchor="middle">4</text>
+  <rect x="1067" y="235" width="50" height="24" rx="12" fill="#fdf1e8"/>
+  <text class="chip you" x="1092" y="251.5" text-anchor="middle">YOU</text>
+  <text class="card-title" x="927" y="301">Checkpoint</text>
+  <text class="desc" x="927" y="329">Answer a few questions,</text>
+  <text class="desc" x="927" y="349">like a missing number.</text>
+  <text class="desc" x="927" y="369">Saved for next time.</text>
+  <rect x="927" y="385" width="172" height="26" rx="8" fill="#f6f5fa" stroke="#ebe9f2"/>
+  <text class="pill" x="939" y="402.5">answers → profile.json</text>
+
+  <!-- 5. Write and check loop -->
+  <rect x="65" y="482" width="770" height="260" rx="20" fill="#fcfbff" stroke="#d6cef8" stroke-dasharray="6 5" filter="url(#shadow)"/>
+  <circle cx="103" cy="522" r="18" fill="#f3f0ff"/>
+  <text class="num ai" x="103" y="527.5" text-anchor="middle">5</text>
+  <text class="card-title" x="133" y="517">Write and check</text>
+  <text class="desc" x="133" y="539">Up to 3 rounds. Done when the score is 80+, nothing is made up and the review passes.</text>
+
+  <rect x="110" y="572" width="150" height="64" rx="12" fill="#f3f0ff" stroke="#cbbff7"/>
+  <text class="node" x="185" y="600" text-anchor="middle">write-resume</text>
+  <text class="node-sub" x="185" y="620" text-anchor="middle">drafts the résumé</text>
+  <rect x="290" y="572" width="150" height="64" rx="12" fill="#ebf7f1" stroke="#b7e0cd"/>
+  <text class="node" x="365" y="600" text-anchor="middle">render.py</text>
+  <text class="node-sub" x="365" y="620" text-anchor="middle">makes the PDF</text>
+  <rect x="470" y="572" width="150" height="64" rx="12" fill="#ebf7f1" stroke="#b7e0cd"/>
+  <text class="node" x="545" y="600" text-anchor="middle">ats_score.py</text>
+  <text class="node-sub" x="545" y="620" text-anchor="middle">checks and scores</text>
+  <rect x="650" y="572" width="150" height="64" rx="12" fill="#f3f0ff" stroke="#cbbff7"/>
+  <text class="node" x="725" y="600" text-anchor="middle">review-resume</text>
+  <text class="node-sub" x="725" y="620" text-anchor="middle">checks tone and fit</text>
+
+  <g stroke="#b3b0c2" stroke-width="1.4" fill="none">
+    <line x1="262" y1="604" x2="286" y2="604" marker-end="url(#arrow)"/>
+    <line x1="442" y1="604" x2="466" y2="604" marker-end="url(#arrow)"/>
+    <line x1="622" y1="604" x2="646" y2="604" marker-end="url(#arrow)"/>
+    <path d="M725 638 C725 690 185 690 185 641" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+    <line x1="837" y1="604" x2="901" y2="604" marker-end="url(#arrow)"/>
+  </g>
+  <text class="note" x="455" y="706" text-anchor="middle">Not there yet? It revises using the fix list and tries again.</text>
+  <text class="node-sub code" x="869" y="594" text-anchor="middle">passes</text>
+
+  <!-- 6. Ready to send -->
+  <rect x="905" y="482" width="230" height="260" rx="16" fill="#ffffff" stroke="#e6e2f3" filter="url(#shadow)"/>
+  <circle cx="943" cy="522" r="18" fill="#fdf1e8"/>
+  <text class="num you" x="943" y="527.5" text-anchor="middle">6</text>
+  <rect x="1067" y="510" width="50" height="24" rx="12" fill="#fdf1e8"/>
+  <text class="chip you" x="1092" y="526.5" text-anchor="middle">YOU</text>
+  <text class="card-title" x="927" y="578">Ready to send</text>
+  <text class="desc" x="927" y="606">You check each line</text>
+  <text class="desc" x="927" y="626">against its source.</text>
+  <path d="M927 646 H943 L951 654 V674 H927 Z" fill="#fdf1e8" stroke="#f0cfb8"/>
+  <text class="tiny you" x="939" y="667" text-anchor="middle">PDF</text>
+  <text class="pill" x="961" y="665">Name_Company_Role.pdf</text>
+  <path d="M927 688 H943 L951 696 V716 H927 Z" fill="#f3f0ff" stroke="#cbbff7"/>
+  <text class="tiny ai" x="939" y="709" text-anchor="middle">MD</text>
+  <text class="pill" x="961" y="707">report.md</text>
+
+  <!-- Nothing made up -->
+  <rect x="150" y="768" width="900" height="40" rx="20" fill="#ffffff" stroke="#e6e2f3"/>
+  <circle cx="182" cy="788" r="10" fill="#ebf7f1"/>
+  <path d="M177.5 788.5 L180.8 791.8 L186.8 784.8" fill="none" stroke="#2f8a66" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="strip" x="610" y="793" text-anchor="middle"><tspan font-weight="600">Nothing made up.</tspan> Every line links to a fact in your profile, and the code blocks anything that doesn't match.</text>
+</svg>

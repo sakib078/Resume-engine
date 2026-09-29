@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="880" viewBox="0 0 1200 880" role="img" aria-labelledby="title desc">
+  <title id="title">Resume-engine architecture</title>
+  <desc id="desc">A tree of the engine's parts: AI skills, Python scripts, the rulebook, contracts (schemas and templates) and your data.</desc>
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; fill: #34323f; }
+      .h1 { font-size: 40px; font-weight: 600; fill: #6e56cf; }
+      .lead { font-size: 17px; fill: #8b8997; }
+      .legend { font-size: 13px; fill: #7a7887; }
+      .root { font-size: 16px; font-weight: 700; letter-spacing: 2px; fill: #2f2d3b; }
+      .root-sub { font-size: 12.5px; fill: #8b8997; }
+      .l1 { font-size: 16px; font-weight: 600; fill: #2f2d3b; }
+      .l2 { font-size: 15px; font-weight: 600; fill: #34323f; }
+      .sub { font-size: 12.5px; }
+      .item { font-size: 14px; fill: #4f4d5d; }
+      .head { font-size: 14px; font-weight: 600; fill: #34323f; }
+      .ai { fill: #6e56cf; }
+      .code { fill: #2f8a66; }
+      .rule { fill: #5f6480; }
+      .data { fill: #bf6a33; }
+      .wm { font-size: 140px; font-weight: 800; letter-spacing: 10px; fill: #efedf5; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#aeabbe"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="180%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#6e56cf" flood-opacity="0.07"/>
+    </filter>
+    <pattern id="dots" width="15" height="15" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="2.4" fill="#d9d1fa"/>
+    </pattern>
+    <clipPath id="card"><rect width="1200" height="880" rx="28"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <rect width="1200" height="880" fill="#f5f4f9"/>
+    <g stroke="#ebe9f2" stroke-width="1">
+      <line x1="240" y1="0" x2="240" y2="880"/>
+      <line x1="480" y1="0" x2="480" y2="880"/>
+      <line x1="720" y1="0" x2="720" y2="880"/>
+      <line x1="960" y1="0" x2="960" y2="880"/>
+    </g>
+    <rect x="1062" y="37" width="90" height="90" fill="url(#dots)"/>
+    <rect x="30" y="806" width="90" height="60" fill="url(#dots)"/>
+    <text class="wm" x="1190" y="872" text-anchor="end">RESUME</text>
+  </g>
+
+  <text class="h1" x="80" y="96">Architecture</text>
+  <text class="lead" x="80" y="134">Every part of the engine, grouped by what it does. The AI writes; the code checks.</text>
+
+  <circle cx="86" cy="167" r="5" fill="#b9a9f5"/>
+  <text class="legend" x="98" y="172">AI step</text>
+  <circle cx="175" cy="167" r="5" fill="#9fd6bd"/>
+  <text class="legend" x="187" y="172">Code (no AI)</text>
+  <circle cx="298" cy="167" r="5" fill="#c3c7d6"/>
+  <text class="legend" x="310" y="172">Rules &amp; contracts</text>
+  <circle cx="455" cy="167" r="5" fill="#f2c4a4"/>
+  <text class="legend" x="467" y="172">Your data (kept out of git)</text>
+
+  <rect x="450" y="210" width="300" height="62" rx="10" fill="#ffffff" stroke="#d6cef8" stroke-width="1.2" filter="url(#shadow)"/>
+  <text class="root" x="600" y="237" text-anchor="middle">RESUME ENGINE</text>
+  <text class="root-sub" x="600" y="258" text-anchor="middle">AGENTS.md · runs in any AI coding agent</text>
+
+  <g stroke="#b3b0c2" stroke-width="1.4" fill="none">
+    <line x1="600" y1="272" x2="600" y2="312"/>
+    <line x1="150" y1="312" x2="1050" y2="312"/>
+    <line x1="150" y1="312" x2="150" y2="357" marker-end="url(#arrow)"/>
+    <line x1="375" y1="312" x2="375" y2="357" marker-end="url(#arrow)"/>
+    <line x1="600" y1="312" x2="600" y2="357" marker-end="url(#arrow)"/>
+    <line x1="825" y1="312" x2="825" y2="357" marker-end="url(#arrow)"/>
+    <line x1="1050" y1="312" x2="1050" y2="357" marker-end="url(#arrow)"/>
+    <line x1="150" y1="422" x2="150" y2="477" marker-end="url(#arrow)"/>
+    <line x1="375" y1="422" x2="375" y2="477" marker-end="url(#arrow)"/>
+    <line x1="600" y1="422" x2="600" y2="477" marker-end="url(#arrow)"/>
+    <line x1="825" y1="422" x2="825" y2="477" marker-end="url(#arrow)"/>
+    <line x1="1050" y1="422" x2="1050" y2="477" marker-end="url(#arrow)"/>
+    <line x1="150" y1="542" x2="150" y2="597" marker-end="url(#arrow)"/>
+    <line x1="375" y1="542" x2="375" y2="597" marker-end="url(#arrow)"/>
+    <line x1="600" y1="542" x2="600" y2="597" marker-end="url(#arrow)"/>
+    <line x1="825" y1="542" x2="825" y2="597" marker-end="url(#arrow)"/>
+    <line x1="1050" y1="542" x2="1050" y2="597" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Skills -->
+  <rect x="55" y="360" width="190" height="62" rx="10" fill="#f3f0ff" stroke="#cbbff7" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="l1" x="150" y="386" text-anchor="middle">Skills</text>
+  <text class="sub ai" x="150" y="407" text-anchor="middle">AI · 6 steps</text>
+  <rect x="55" y="480" width="190" height="62" rx="10" fill="#ffffff" stroke="#cbbff7" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="l2" x="150" y="506" text-anchor="middle">tailor-resume</text>
+  <text class="sub ai" x="150" y="527" text-anchor="middle">the main entry point</text>
+  <rect x="55" y="600" width="190" height="188" rx="10" fill="#ffffff" stroke="#cbbff7" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="item" x="150" y="638" text-anchor="middle">analyze-job</text>
+  <text class="item" x="150" y="670" text-anchor="middle">match-profile</text>
+  <text class="item" x="150" y="702" text-anchor="middle">write-resume</text>
+  <text class="item" x="150" y="734" text-anchor="middle">review-resume</text>
+  <text class="item" x="150" y="766" text-anchor="middle">build-profile</text>
+
+  <!-- Scripts -->
+  <rect x="280" y="360" width="190" height="62" rx="10" fill="#ebf7f1" stroke="#b7e0cd" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="l1" x="375" y="386" text-anchor="middle">Scripts</text>
+  <text class="sub code" x="375" y="407" text-anchor="middle">code · no AI</text>
+  <rect x="280" y="480" width="190" height="62" rx="10" fill="#ffffff" stroke="#b7e0cd" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="l2" x="375" y="506" text-anchor="middle">ats_score.py</text>
+  <text class="sub code" x="375" y="527" text-anchor="middle">gates · score · fixes</text>
+  <rect x="280" y="600" width="190" height="188" rx="10" fill="#ffffff" stroke="#b7e0cd" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="item" x="375" y="638" text-anchor="middle">validate.py</text>
+  <text class="item" x="375" y="670" text-anchor="middle">render.py</text>
+  <text class="item" x="375" y="702" text-anchor="middle">finalize.py</text>
+  <text class="item" x="375" y="734" text-anchor="middle">pdf_text.py</text>
+  <text class="item" x="375" y="766" text-anchor="middle">config.toml</text>
+
+  <!-- Rules -->
+  <rect x="505" y="360" width="190" height="62" rx="10" fill="#f2f3f7" stroke="#d3d6e2" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="l1" x="600" y="386" text-anchor="middle">Rules</text>
+  <text class="sub rule" x="600" y="407" text-anchor="middle">one rulebook</text>
+  <rect x="505" y="480" width="190" height="62" rx="10" fill="#ffffff" stroke="#d3d6e2" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="l2" x="600" y="506" text-anchor="middle">resume-rules.md</text>
+  <text class="sub rule" x="600" y="527" text-anchor="middle">44 rules · 8 groups</text>
+  <rect x="505" y="600" width="190" height="156" rx="10" fill="#ffffff" stroke="#d3d6e2" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="item" x="600" y="638" text-anchor="middle">examples.md</text>
+  <text class="item" x="600" y="670" text-anchor="middle">action-verbs.txt</text>
+  <text class="item" x="600" y="702" text-anchor="middle">banned-phrases.txt</text>
+  <text class="item" x="600" y="734" text-anchor="middle">lexicon.json</text>
+
+  <!-- Contracts -->
+  <rect x="730" y="360" width="190" height="62" rx="10" fill="#f2f3f7" stroke="#d3d6e2" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="l1" x="825" y="386" text-anchor="middle">Contracts</text>
+  <text class="sub rule" x="825" y="407" text-anchor="middle">schemas + templates</text>
+  <rect x="730" y="480" width="190" height="62" rx="10" fill="#ffffff" stroke="#d3d6e2" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="l2" x="825" y="506" text-anchor="middle">harvard.typ</text>
+  <text class="sub rule" x="825" y="527" text-anchor="middle">PDF layout (Typst)</text>
+  <rect x="730" y="600" width="190" height="220" rx="10" fill="#ffffff" stroke="#d3d6e2" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="item" x="825" y="638" text-anchor="middle">jd-template.md</text>
+  <text class="item" x="825" y="670" text-anchor="middle">profile.schema</text>
+  <text class="item" x="825" y="702" text-anchor="middle">analysis.schema</text>
+  <text class="item" x="825" y="734" text-anchor="middle">match.schema</text>
+  <text class="item" x="825" y="766" text-anchor="middle">resume.schema</text>
+  <text class="item" x="825" y="798" text-anchor="middle">review.schema</text>
+
+  <!-- Your data -->
+  <rect x="955" y="360" width="190" height="62" rx="10" fill="#fdf2ea" stroke="#f0cfb8" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="l1" x="1050" y="386" text-anchor="middle">Your data</text>
+  <text class="sub data" x="1050" y="407" text-anchor="middle">kept out of git</text>
+  <rect x="955" y="480" width="190" height="62" rx="10" fill="#ffffff" stroke="#f0cfb8" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="l2" x="1050" y="506" text-anchor="middle">profile.json</text>
+  <text class="sub data" x="1050" y="527" text-anchor="middle">your facts + evidence</text>
+  <rect x="955" y="600" width="190" height="222" rx="10" fill="#ffffff" stroke="#f0cfb8" stroke-dasharray="5 4" filter="url(#shadow)"/>
+  <text class="head" x="1050" y="638" text-anchor="middle">jobs/&lt;job&gt;/</text>
+  <text class="item" x="1050" y="672" text-anchor="middle">jd.md</text>
+  <text class="item" x="1050" y="704" text-anchor="middle">analysis · match</text>
+  <text class="item" x="1050" y="736" text-anchor="middle">resume.vN · pdf</text>
+  <text class="item" x="1050" y="768" text-anchor="middle">score.vN · review.vN</text>
+  <text class="item" x="1050" y="800" text-anchor="middle">report.md · final PDF</text>
+</svg>
