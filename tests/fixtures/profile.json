@@ -1,0 +1,141 @@
+{
+  "basics": {
+    "name": "Alex Morgan",
+    "email": "alex.morgan@example.com",
+    "phone": "+44 7700 900123",
+    "location": "Manchester, UK",
+    "linkedin": "linkedin.com/in/alex-morgan-example",
+    "github": "github.com/alexmorgan-example"
+  },
+  "preferences": {
+    "target_roles": ["Data Analyst", "Analytics Engineer"],
+    "page_limit": "auto",
+    "spelling": "auto",
+    "new_grad": false
+  },
+  "work": [
+    {
+      "id": "brightcart",
+      "company": "BrightCart Ltd",
+      "title": "Data Analyst",
+      "location": "Manchester, UK",
+      "start": "2022-03",
+      "end": "present",
+      "evidence": [
+        {
+          "id": "brightcart-01",
+          "result": "Weekly sales reporting time cut from 6 hours to 45 minutes",
+          "how": "Rebuilt 12 Excel reports as one Power BI dashboard fed by SQL views on Snowflake",
+          "metrics": [
+            {"value": "6 hours to 45 minutes", "meaning": "weekly reporting time"},
+            {"value": "12", "meaning": "Excel reports replaced"}
+          ],
+          "skills": ["Power BI", "SQL", "Snowflake", "Excel"],
+          "ai_used": false,
+          "raw_notes": "sales team waited every monday for my reports, 6 hours of copy paste. moved it all to power bi on top of snowflake views, now 45 mins to check and publish"
+        },
+        {
+          "id": "brightcart-02",
+          "result": "Failed nightly data loads fell from 9 a month to 1",
+          "how": "Moved 14 ETL jobs from cron scripts to Airflow with retries and Slack alerting",
+          "metrics": [
+            {"value": "9 to 1", "meaning": "failed loads per month"},
+            {"value": "14", "meaning": "ETL jobs migrated"}
+          ],
+          "skills": ["Airflow", "Python", "ETL"],
+          "ai_used": false
+        },
+        {
+          "id": "brightcart-03",
+          "result": "Ad-hoc churn questions from finance dropped from about 20 to 3 a week",
+          "how": "Published a data dictionary and FAQ for the churn model and walked finance through it",
+          "metrics": [{"value": "20 to 3", "meaning": "ad-hoc questions per week"}],
+          "skills": ["Stakeholder Management", "Data Storytelling"],
+          "ai_used": false
+        },
+        {
+          "id": "brightcart-04",
+          "result": "Finance and product now share one definition of active customer",
+          "how": "Designed the company's first star schema in dbt, with tests on the core models",
+          "metrics": [],
+          "skills": ["dbt", "Star Schema", "Dimensional Modelling", "SQL"],
+          "ai_used": false
+        }
+      ]
+    },
+    {
+      "id": "northpeak",
+      "company": "NorthPeak Insurance",
+      "title": "Junior Business Analyst",
+      "location": "Leeds, UK",
+      "start": "2019-09",
+      "end": "2022-02",
+      "evidence": [
+        {
+          "id": "northpeak-01",
+          "result": "Claims backlog report delivered daily instead of weekly",
+          "how": "Automated the report with Python and SQL Server scheduled jobs",
+          "metrics": [{"value": "daily instead of weekly", "meaning": "report frequency"}],
+          "skills": ["Python", "SQL"],
+          "ai_used": false
+        },
+        {
+          "id": "northpeak-02",
+          "result": "Found £140k of duplicate supplier payments",
+          "how": "Built a matching query across 3 payment systems and reviewed the exceptions with finance",
+          "metrics": [
+            {"value": "£140k", "meaning": "duplicate payments found"},
+            {"value": "3", "meaning": "payment systems matched"}
+          ],
+          "skills": ["SQL", "Excel"],
+          "ai_used": false
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "ticket-triage",
+      "name": "LLM support-ticket triage",
+      "link": "github.com/alexmorgan-example/ticket-triage",
+      "start": "2024-05",
+      "end": "2024-07",
+      "evidence": [
+        {
+          "id": "ticket-triage-01",
+          "result": "Monthly ticket analysis cut from 3 days to 4 hours",
+          "how": "Built a Python tool that uses an LLM API to tag 4,000 public support tickets by theme, then checked a sample by hand",
+          "metrics": [
+            {"value": "3 days to 4 hours", "meaning": "analysis time"},
+            {"value": "4,000", "meaning": "tickets tagged"}
+          ],
+          "skills": ["Python", "Large Language Models"],
+          "ai_used": true,
+          "link": "github.com/alexmorgan-example/ticket-triage"
+        }
+      ]
+    }
+  ],
+  "education": [
+    {"institution": "University of Leeds", "degree": "BSc Mathematics", "location": "Leeds, UK", "start": "2016-09", "end": "2019-06"}
+  ],
+  "certificates": [
+    {"name": "Microsoft Certified: Power BI Data Analyst Associate", "issuer": "Microsoft", "date": "2023-05"}
+  ],
+  "skills": [
+    {"name": "SQL", "category": "Languages"},
+    {"name": "Python", "category": "Languages"},
+    {"name": "DAX", "category": "Languages"},
+    {"name": "Power BI", "category": "BI & Visualisation"},
+    {"name": "Tableau", "category": "BI & Visualisation"},
+    {"name": "Excel", "category": "BI & Visualisation"},
+    {"name": "Snowflake", "category": "Data Platforms"},
+    {"name": "dbt", "category": "Data Platforms"},
+    {"name": "Airflow", "category": "Data Platforms"},
+    {"name": "Dimensional Modelling", "category": "Methods"},
+    {"name": "Star Schema", "category": "Methods"},
+    {"name": "Stakeholder Management", "category": "Ways of Working"},
+    {"name": "Data Storytelling", "category": "Ways of Working"},
+    {"name": "Large Language Models", "category": "AI"}
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "job": {
+    "title": "Data Analyst",
+    "seniority": "mid",
+    "location": "Manchester, UK (hybrid)",
+    "employment_type": "Permanent, full-time",
+    "years_required": null,
+    "spelling": "en-GB"
+  },
+  "company": {
+    "name": "Northwind Logistics",
+    "industry": "Logistics",
+    "size": "About 900 staff",
+    "product": "Same-day freight network across the north of England",
+    "values": ["Own it", "Keep it simple"],
+    "tech_stack": ["Snowflake", "dbt", "Power BI", "Airflow"]
+  },
+  "problems": [
+    {"id": "P1", "problem": "Operational reporting is slow and manual", "evidence_in_jd": "replace manual weekly reporting with self-serve dashboards"},
+    {"id": "P2", "problem": "Data pipelines are unreliable", "evidence_in_jd": "improve the reliability of our data pipelines"},
+    {"id": "P3", "problem": "Teams disagree on KPI definitions", "evidence_in_jd": "create a single source of truth for operational KPIs"}
+  ],
+  "keywords": [
+    {"term": "SQL", "importance": "required", "category": "technical", "aliases": []},
+    {"term": "Power BI", "importance": "required", "category": "tool", "aliases": []},
+    {"term": "dbt", "importance": "required", "category": "tool", "aliases": []},
+    {"term": "Snowflake", "importance": "required", "category": "tool", "aliases": []},
+    {"term": "Stakeholder Management", "importance": "required", "category": "soft_skill", "aliases": ["stakeholders"]},
+    {"term": "Python", "importance": "preferred", "category": "technical", "aliases": []},
+    {"term": "Airflow", "importance": "preferred", "category": "tool", "aliases": []},
+    {"term": "Looker", "importance": "preferred", "category": "tool", "aliases": []},
+    {"term": "Data Modelling", "importance": "preferred", "category": "methodology", "aliases": ["data modeling", "dimensional modelling"]}
+  ],
+  "duties": [
+    "Build and maintain Power BI dashboards for operations and finance",
+    "Model data in dbt on top of Snowflake",
+    "Define and document KPIs with operations and finance stakeholders",
+    "Monitor and improve scheduled data loads"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Profile-to-job match",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fit_summary", "requirements", "problems", "gaps", "selected", "skills", "questions"],
+  "properties": {
+    "fit_summary": {"type": "string", "minLength": 1},
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["keyword", "strength", "evidence_ids"],
+        "properties": {
+          "keyword": {"type": "string"},
+          "strength": {"enum": ["strong", "partial", "none"]},
+          "evidence_ids": {"type": "array", "items": {"type": "string"}},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "problems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "evidence_ids", "angle"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^P[1-5]$"},
+          "evidence_ids": {"type": "array", "items": {"type": "string"}},
+          "angle": {"type": "string"}
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["keyword", "importance"],
+        "properties": {
+          "keyword": {"type": "string"},
+          "importance": {"enum": ["required", "preferred"]},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "selected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["work", "projects"],
+      "properties": {
+        "work": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["role_id", "evidence_ids"],
+            "properties": {
+              "role_id": {"type": "string"},
+              "evidence_ids": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["project_id", "evidence_ids"],
+            "properties": {
+              "project_id": {"type": "string"},
+              "evidence_ids": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        }
+      }
+    },
+    "skills": {"type": "array", "maxItems": 48, "items": {"type": "string"}},
+    "questions": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "question"],
+        "properties": {
+          "id": {"type": "string"},
+          "evidence_id": {"type": ["string", "null"]},
+          "question": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

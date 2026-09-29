@@ -1,0 +1,4 @@
+typst>=0.13
+pypdf>=5.0
+jsonschema>=4.20
+pytest>=8.0

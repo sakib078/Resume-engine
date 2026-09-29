@@ -1,0 +1,34 @@
+[score]
+threshold = 80
+ceiling_margin = 5
+max_rounds = 3
+min_gain = 2
+
+[score.weights]
+keywords = 35
+impact = 20
+bullets = 15
+parse = 20
+fit = 10
+
+[keywords]
+required_weight = 2
+preferred_weight = 1
+skills_only_credit = 0.5
+max_repeats = 3
+repeat_penalty = 2
+
+[bullets]
+quantified_target = 0.6
+max_chars = 220
+max_verb_repeats = 2
+
+[length]
+two_page_years = 10
+
+[pdf]
+max_mb = 2.5
+
+[render]
+paper = "a4"  # or "us-letter"
+fonts = ["Garamond", "Times New Roman", "Libertinus Serif"]

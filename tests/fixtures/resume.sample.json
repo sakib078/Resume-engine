@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "basics": {
+    "name": "Alex Morgan",
+    "email": "alex.morgan@example.com",
+    "phone": "+44 7700 900123",
+    "location": "Manchester, UK",
+    "linkedin": "linkedin.com/in/alex-morgan-example",
+    "github": "github.com/alexmorgan-example"
+  },
+  "tagline": "Data analyst turning operational data into self-serve Power BI reporting with SQL, dbt and Snowflake",
+  "summary": "Data analyst with 7 years of experience building the reporting and data models that operations and finance teams rely on. Cut weekly sales reporting from 6 hours to 45 minutes and introduced the first dbt star schema, giving finance and product one definition of active customer. Comfortable owning a problem end to end, from scoping with stakeholders to explaining results to non-technical leaders.",
+  "summary_evidence_ids": ["brightcart-01", "brightcart-04", "brightcart-03"],
+  "education_first": false,
+  "skills": [
+    {"category": "Languages", "items": ["SQL", "Python", "DAX"]},
+    {"category": "BI & Visualisation", "items": ["Power BI", "Tableau", "Excel"]},
+    {"category": "Data Platforms", "items": ["Snowflake", "dbt", "Airflow"]},
+    {"category": "Methods", "items": ["Dimensional Modelling", "Star Schema"]},
+    {"category": "Ways of Working", "items": ["Stakeholder Management", "Data Storytelling"]},
+    {"category": "AI", "items": ["Large Language Models"]}
+  ],
+  "work": [
+    {
+      "role_id": "brightcart",
+      "company": "BrightCart Ltd",
+      "title": "Data Analyst",
+      "location": "Manchester, UK",
+      "start": "2022-03",
+      "end": "present",
+      "bullets": [
+        {"text": "Cut weekly sales reporting from 6 hours to 45 minutes by rebuilding 12 Excel reports as one Power BI dashboard on SQL views in Snowflake.", "evidence_ids": ["brightcart-01"]},
+        {"text": "Reduced failed nightly data loads from 9 a month to 1 by moving 14 ETL jobs from cron scripts to Airflow with retries and Slack alerting.", "evidence_ids": ["brightcart-02"]},
+        {"text": "Lowered ad-hoc churn questions from finance from about 20 to 3 a week by publishing a data dictionary and FAQ for the churn model.", "evidence_ids": ["brightcart-03"]},
+        {"text": "Introduced dimensional modelling with the company's first star schema in dbt, giving finance and product a single definition of active customer.", "evidence_ids": ["brightcart-04"]}
+      ]
+    },
+    {
+      "role_id": "northpeak",
+      "company": "NorthPeak Insurance",
+      "title": "Junior Business Analyst",
+      "location": "Leeds, UK",
+      "start": "2019-09",
+      "end": "2022-02",
+      "bullets": [
+        {"text": "Automated the claims backlog report with Python and SQL Server jobs, moving it from weekly to daily delivery.", "evidence_ids": ["northpeak-01"]},
+        {"text": "Identified £140k of duplicate supplier payments by building a matching query across 3 payment systems and reviewing exceptions with finance.", "evidence_ids": ["northpeak-02"]}
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "project_id": "ticket-triage",
+      "name": "LLM support-ticket triage",
+      "link": "github.com/alexmorgan-example/ticket-triage",
+      "start": "2024-05",
+      "end": "2024-07",
+      "bullets": [
+        {"text": "Cut monthly ticket analysis from 3 days to 4 hours with a Python tool that uses an LLM API to tag 4,000 public support tickets by theme.", "evidence_ids": ["ticket-triage-01"]}
+      ]
+    }
+  ],
+  "education": [
+    {"institution": "University of Leeds", "degree": "BSc Mathematics", "location": "Leeds, UK", "start": "2016-09", "end": "2019-06"}
+  ],
+  "certificates": [
+    {"name": "Microsoft Certified: Power BI Data Analyst Associate", "issuer": "Microsoft", "date": "2023-05"}
+  ],
+  "changes": [
+    {"section": "Summary", "change": "Led with the reporting speed-up and the dbt star schema", "why": "Answers P1 (manual reporting) and P3 (one source of truth for KPIs)"},
+    {"section": "Experience", "change": "Kept all four BrightCart achievements and two from NorthPeak", "why": "BrightCart work matches the Snowflake, dbt and Power BI stack"}
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "languages": {
+    "Python": [],
+    "SQL": ["T-SQL", "Structured Query Language"],
+    "R": [],
+    "Scala": [],
+    "Java": [],
+    "Bash": ["shell scripting"],
+    "DAX": [],
+    "M Query": ["Power Query", "Power Query M"]
+  },
+  "data_platforms": {
+    "Snowflake": [],
+    "dbt": ["data build tool"],
+    "BigQuery": ["Google BigQuery"],
+    "Databricks": [],
+    "Redshift": ["Amazon Redshift"],
+    "Apache Spark": ["Spark", "PySpark"],
+    "Kafka": ["Apache Kafka"],
+    "Airflow": ["Apache Airflow"],
+    "Fivetran": [],
+    "Stitch": []
+  },
+  "visualisation": {
+    "Power BI": ["PowerBI", "Microsoft Power BI"],
+    "Tableau": [],
+    "Looker": [],
+    "Qlik": ["Qlik Sense", "QlikView"],
+    "Metabase": [],
+    "Superset": ["Apache Superset"],
+    "Excel": ["Microsoft Excel"]
+  },
+  "cloud": {
+    "AWS": ["Amazon Web Services"],
+    "Azure": ["Microsoft Azure"],
+    "GCP": ["Google Cloud", "Google Cloud Platform"],
+    "Azure Data Factory": ["ADF"],
+    "AWS Glue": [],
+    "S3": ["Amazon S3"]
+  },
+  "methodologies": {
+    "Agile": [],
+    "Scrum": [],
+    "CI/CD": ["continuous integration", "continuous delivery", "continuous deployment"],
+    "DataOps": [],
+    "MLOps": [],
+    "Data Mesh": [],
+    "Dimensional Modelling": ["Dimensional Modeling", "Kimball"],
+    "Star Schema": [],
+    "Data Modelling": ["Data Modeling"],
+    "Data Governance": [],
+    "ETL": ["ELT", "ETL/ELT"]
+  },
+  "soft_skills": {
+    "Stakeholder Management": ["stakeholder engagement"],
+    "Data Storytelling": [],
+    "Cross-functional Collaboration": ["cross-functional"],
+    "Strategic Thinking": [],
+    "Business Intelligence": [],
+    "Problem Solving": ["problem-solving"]
+  },
+  "ai_ml": {
+    "Machine Learning": ["ML"],
+    "Large Language Models": ["LLM", "LLMs"],
+    "Artificial Intelligence": ["AI"],
+    "Prompt Engineering": []
+  }
+}

@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Personal data: your profile and applications
+profile/
+jobs/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.obsidian/
+.vscode/
+.idea/
