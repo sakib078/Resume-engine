@@ -50,7 +50,7 @@ def make_pdf(config):
     """Build fake PDF facts that read like pypdf output of the rendered résumé."""
     def build(resume):
         data = render.display_data(resume, config)
-        lines = [data["name"], data["tagline"], "  |  ".join(data["contact"])]
+        lines = [data["name"], data["tagline"], "  |  ".join(c["text"] for c in data["contact"])]
         for key in data["order"]:
             lines.append(render.HEADINGS[key].upper())
             if key == "summary":
@@ -59,9 +59,12 @@ def make_pdf(config):
                 lines += [f'{s["category"]}: {", ".join(s["items"])}' for s in data[key]]
             elif key == "certifications":
                 lines += data["certifications"]
+            elif key == "projects":
+                for p in data["projects"]:
+                    lines += [f'{p["name"]} | {p["tech"]}', *p["bullets"]]
             else:
                 for e in data[key]:
-                    lines += [f'{e["title"]} {e["dates"]}', e["sub"], *e["bullets"]]
+                    lines += [f'{e["title"]} {e["dates"]}', f'{e["left"]} {e["right"]}', e["note"], *e["bullets"]]
         return {"text": "\n".join(lines), "pages": 1, "mb": 0.05}
 
     return build

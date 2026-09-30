@@ -8,7 +8,7 @@ description: Review one résumé version as a tech recruiter and as a copywriter
 Read `jobs/<slug>/resume.vN.json`, `jobs/<slug>/analysis.json`, `profile/profile.json` and `rules/resume-rules.md`. `ats_score.py` already checks numbers, verbs, length, keyword counts and parsing, so don't repeat those checks.
 
 **Recruiter** (the optimiser's tech and data recruiter):
-- Is each of P1–P3 answered convincingly in the summary or the top bullets of the most recent role?
+- Is each of P1–P3 answered convincingly in the headline, the summary (if there is one) or the top bullets of the most recent role?
 - Is the positioning right for the title and seniority? Would you shortlist this person?
 
 **Copywriter** (the optimiser's expert copywriter, plus Jeff Su's Rule 3):

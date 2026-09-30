@@ -97,6 +97,7 @@
     {
       "id": "ticket-triage",
       "name": "LLM support-ticket triage",
+      "tech_stack": ["Python", "Large Language Models"],
       "link": "github.com/alexmorgan-example/ticket-triage",
       "start": "2024-05",
       "end": "2024-07",

@@ -13,7 +13,7 @@ description: Create or update profile/profile.json, the master career profile, t
 - **Update:** answers from checkpoint 1 of `tailor-resume`. Add each one to the evidence it's about.
 
 ## Interview (one role at a time, most recent first)
-1. **basics** and **preferences:** target roles, `page_limit` (auto, 1 or 2), `spelling` (auto, en-GB or en-US), `new_grad`.
+1. **basics** and **preferences:** target roles, `page_limit` (auto, 1 or 2), `spelling` (auto, en-GB or en-US), `new_grad`, `summary` (true adds a summary section; off by default).
 2. **Role:** `id` (short slug, e.g. `brightcart`), company, title, location, `start`/`end` as `YYYY-MM` (`end` is `present` for the current role).
 3. **Brain dump (Jeff Su, Rule 3):** for each achievement ask: What was the final result? What did you specifically do? How did you do it? Keep the answer word for word in `raw_notes`, then fill in `result`, `how`, `skills`, `ai_used` and `link`.
 4. **Metrics (Jeff Su, Rule 4):** help the user find the most relevant metric for each achievement. Ask about time saved, speed, scale, volume, accuracy, adoption and money, not just revenue. Record only numbers the user states, in `metrics` as `{value, meaning}`.

@@ -1,6 +1,7 @@
-"""Render a tailored résumé JSON to PDF with the Harvard Typst template."""
+"""Render a tailored résumé JSON to PDF with the Typst template."""
 import argparse
 import json
+import re
 import sys
 import tomllib
 from pathlib import Path
@@ -10,10 +11,10 @@ TEMPLATE = ROOT / "templates" / "harvard.typ"
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 HEADINGS = {
     "summary": "Summary",
-    "skills": "Skills",
     "experience": "Experience",
     "projects": "Projects",
     "education": "Education",
+    "skills": "Skills",
     "certifications": "Certifications",
     "achievements": "Achievements",
 }
@@ -46,6 +47,27 @@ def join(*parts, sep=" | "):
     return sep.join(p for p in parts if p)
 
 
+def short_url(url):
+    """Display form of a URL: no scheme, no 'www.', no trailing slash."""
+    return re.sub(r"^(https?://)?(www\.)?", "", url or "").rstrip("/")
+
+
+def full_url(url):
+    """Link target for a URL that may lack a scheme."""
+    return url if re.match(r"^[a-z]+:", url) else "https://" + url
+
+
+def contact(resume):
+    """Header items in display order: location, phone, email, then links."""
+    basics = resume["basics"]
+    items = [{"text": basics[k], "url": ""} for k in ("location", "phone") if basics.get(k)]
+    if basics.get("email"):
+        items.append({"text": basics["email"], "url": "mailto:" + basics["email"]})
+    urls = [basics[k] for k in ("website", "github", "linkedin") if basics.get(k)]
+    urls += [link["url"] for link in resume.get("links", [])]
+    return items + [{"text": short_url(u), "url": full_url(u)} for u in urls]
+
+
 def section_order(resume):
     """Keys of the non-empty sections, in render order."""
     filled = {
@@ -64,41 +86,44 @@ def section_order(resume):
     return [key for key in order if filled[key]]
 
 
-def entry(title, dates, sub, bullets, note_label="", note=""):
-    """One heading line, an optional labelled note and bullet texts, as the template expects."""
-    return {"title": title, "dates": dates, "sub": sub, "note_label": note_label, "note": note, "bullets": [b["text"] for b in bullets]}
+def entry(title, dates, left, right, bullets, note=""):
+    """Two-row heading (title and dates; place and location), an optional note and bullet texts."""
+    return {"title": title, "dates": dates, "left": left, "right": right, "note": note, "bullets": [b["text"] for b in bullets]}
 
 
 def display_data(resume, config):
     """Display-ready dictionary read by templates/harvard.typ."""
-    basics = resume["basics"]
     return {
         "paper": config["render"]["paper"],
         "fonts": config["render"]["fonts"],
-        "name": basics["name"],
+        "name": resume["basics"]["name"],
         "tagline": resume.get("tagline", ""),
-        "contact": [basics[k] for k in ("email", "phone", "location", "linkedin", "website", "github") if basics.get(k)]
-        + [link["url"] for link in resume.get("links", [])],
+        "contact": contact(resume),
         "headings": HEADINGS,
         "order": section_order(resume),
         "summary": resume.get("summary", ""),
         "skills": resume.get("skills", []),
         "experience": [
-            entry(w["title"], date_range(w.get("start"), w.get("end")), join(w["company"], w.get("location")), w["bullets"])
+            entry(w["title"], date_range(w.get("start"), w.get("end")), w["company"], w.get("location", ""), w["bullets"])
             for w in resume.get("work", [])
         ],
         "projects": [
-            entry(p["name"], date_range(p.get("start"), p.get("end")), p.get("link", ""), p["bullets"])
+            {
+                "name": p["name"],
+                "url": full_url(p["link"]) if p.get("link") else "",
+                "tech": ", ".join(p.get("tech_stack", [])),
+                "bullets": [b["text"] for b in p["bullets"]],
+            }
             for p in resume.get("projects", [])
         ],
         "education": [
             entry(
                 join(join(e["degree"], e.get("field"), sep=" in "), e.get("grade"), sep=", "),
-                fmt_month(e.get("end")),
-                join(e["institution"], e.get("location"), sep=", "),
+                date_range(e.get("start"), e.get("end")),
+                e["institution"],
+                e.get("location", ""),
                 [],
-                "Relevant coursework" if e.get("coursework") else "",
-                ", ".join(e.get("coursework", [])),
+                "Relevant Coursework: " + ", ".join(e["coursework"]) if e.get("coursework") else "",
             )
             for e in resume.get("education", [])
         ],

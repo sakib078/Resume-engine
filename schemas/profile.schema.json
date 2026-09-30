@@ -23,7 +23,8 @@
         "target_roles": {"type": "array", "items": {"type": "string"}},
         "page_limit": {"enum": ["auto", 1, 2]},
         "spelling": {"enum": ["auto", "en-GB", "en-US"]},
-        "new_grad": {"type": "boolean"}
+        "new_grad": {"type": "boolean"},
+        "summary": {"type": "boolean"}
       }
     },
     "work": {"type": "array", "items": {"$ref": "#/$defs/role"}},

@@ -88,8 +88,9 @@ def build_report(job, n, profile, pdf_name):
         "## Check every bullet against its evidence",
         "| Where | Résumé text | Evidence | Source facts |",
         "|---|---|---|---|",
-        f'| Summary | {cell(resume["summary"])} | {", ".join(summary_ids)} | {cell(facts(summary_ids, index))} |',
     ]
+    if resume.get("summary"):
+        lines.append(f'| Summary | {cell(resume["summary"])} | {", ".join(summary_ids)} | {cell(facts(summary_ids, index))} |')
     for key, name_key in (("work", "company"), ("projects", "name")):
         for item in resume.get(key, []):
             lines += [

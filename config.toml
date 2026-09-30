@@ -25,10 +25,14 @@ max_verb_repeats = 2
 
 [length]
 two_page_years = 10
+bullets_latest = [4, 6]  # most recent role
+bullets_next = [2, 4]    # second role, and every role when there are 3 or fewer
+bullets_older = [1, 2]   # third role onward when there are 4 or more
+summary_max_chars = 240  # about 2 lines
 
 [pdf]
 max_mb = 2.5
 
 [render]
-paper = "a4"  # or "us-letter"
-fonts = ["Garamond", "Times New Roman", "Libertinus Serif"]
+paper = "us-letter"  # or "a4"
+fonts = ["Times New Roman", "Liberation Serif", "Tinos", "Libertinus Serif"]

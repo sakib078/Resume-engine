@@ -3,7 +3,7 @@
   "title": "Tailored résumé version",
   "type": "object",
   "additionalProperties": false,
-  "required": ["version", "basics", "tagline", "summary", "summary_evidence_ids", "skills", "work", "education", "changes"],
+  "required": ["version", "basics", "tagline", "skills", "work", "education", "changes"],
   "properties": {
     "version": {"type": "integer", "minimum": 1},
     "basics": {
@@ -45,7 +45,7 @@
         "required": ["category", "items"],
         "properties": {
           "category": {"type": "string", "minLength": 1},
-          "items": {"type": "array", "minItems": 1, "maxItems": 6, "items": {"type": "string"}}
+          "items": {"type": "array", "minItems": 1, "maxItems": 10, "items": {"type": "string"}}
         }
       }
     },
@@ -72,10 +72,11 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["project_id", "name", "bullets"],
+        "required": ["project_id", "name", "tech_stack", "bullets"],
         "properties": {
           "project_id": {"type": "string"},
           "name": {"type": "string"},
+          "tech_stack": {"type": "array", "minItems": 1, "maxItems": 8, "items": {"type": "string"}},
           "link": {"type": "string"},
           "start": {"$ref": "#/$defs/month"},
           "end": {"$ref": "#/$defs/end"},
