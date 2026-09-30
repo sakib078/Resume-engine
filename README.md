@@ -69,7 +69,7 @@ python -m venv .venv
 .venv\Scripts\activate          # Windows
 source .venv/bin/activate       # macOS / Linux
 pip install -r requirements.txt
-pytest                          # 10 tests should pass
+pytest                          # 14 tests should pass
 ```
 
 ## Use it

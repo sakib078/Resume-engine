@@ -15,7 +15,7 @@ Read `jobs/<slug>/analysis.json`, `profile/profile.json` and the EVD, KW, LEN an
    Cite the evidence IDs. Don't stretch: if the user would struggle to defend it in an interview, it's `partial` or `none`.
 2. **Problems:** for each problem (`P1`–`P5`), the evidence that best answers it, plus a one-sentence `angle`.
 3. **Gaps (KW-06):** every keyword with strength `none`, with its importance and a short note. Never propose adding them.
-4. **Selected:** for every role in the profile (reverse chronological), the evidence IDs to use, most relevant first: 4–6 for recent or relevant roles, 1–3 for older ones (LEN-03). Add projects that cover a required keyword or show AI work (AI-01, AI-03). Evidence IDs must belong to that role or project.
+4. **Selected:** for every role in the profile (reverse chronological), the evidence IDs to use, most relevant first, enough to fill each role's LEN-03 range (4–6 for the most recent role, 2–4 for the next; see the rule for 3 or more roles). Add projects that cover a required keyword or show AI work (AI-01, AI-03). Evidence IDs must belong to that role or project.
 5. **Skills:** profile skill names to list, most relevant first, 48 at most (SKL-01, SKL-02).
 6. **Questions (EVD-06, BUL-04), at most 5:** only where the answer would clearly improve a selected bullet. This is usually a missing metric on highly relevant evidence ("Roughly how many hours a week did that save?") or an unclear fact. Link each question to its `evidence_id`.
 7. **fit_summary:** 2–3 honest sentences.

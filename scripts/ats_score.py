@@ -8,7 +8,7 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 
-from render import HEADINGS, display_data, load_config, section_order
+from render import HEADINGS, display_data, load_config, section_order, short_url
 
 ROOT = Path(__file__).resolve().parent.parent
 NUMBER = re.compile(r"(?<![A-Za-z0-9-])\d+(?:[.,]\d+)*")
@@ -129,6 +129,15 @@ def page_limit(profile, config, today):
     return 2 if experience_years(profile, today) >= config["length"]["two_page_years"] else 1
 
 
+def bullet_range(i, n, length):
+    """Allowed bullets for the i-th most recent of n roles (LEN-03)."""
+    if i == 0:
+        return length["bullets_latest"]
+    if i == 1 or n <= 3:
+        return length["bullets_next"]
+    return length["bullets_older"]
+
+
 def bullets(resume):
     """(owner ID, label, bullet) for every work and project bullet."""
     out = []
@@ -157,6 +166,7 @@ def keyword_table(analysis, profile, rules, config):
     listed = [n for s in profile.get("skills", []) for n in [s["name"], *s.get("aliases", [])]]
     listed += [c for e in profile.get("education", []) for c in e.get("coursework", [])]
     listed += [c["name"] for c in profile.get("certificates", [])]
+    listed += [t for p in profile.get("projects", []) for t in p.get("tech_stack", [])]
     skills = clean(" ; ".join(listed))
     table = []
     for k in analysis["keywords"]:
@@ -196,8 +206,10 @@ def fact_mismatches(resume, profile):
     projects = {p["id"]: p for p in profile.get("projects", [])}
     for p in resume.get("projects", []):
         src = projects.get(p["project_id"])
-        if not src or p["name"] != src["name"]:
-            out.append(f'project {p["project_id"]} does not match the profile')
+        known = {t.lower() for t in src.get("tech_stack", [])} if src else set()
+        unknown = [t for t in p.get("tech_stack", []) if src and t.lower() not in known]
+        if not src or p["name"] != src["name"] or unknown:
+            out.append(f'project {p["project_id"]} does not match the profile' + (f"; unknown tech {unknown}" if unknown else ""))
     schools = {(e["institution"], e["degree"]): e for e in profile.get("education", [])}
     for e in resume.get("education", []):
         src = schools.get((e["institution"], e["degree"]))
@@ -213,10 +225,10 @@ def fact_mismatches(resume, profile):
     return out
 
 
-def gates(resume, profile, pdf, rules, limit, today):
+def gates(resume, profile, pdf, rules, limit, today, config):
     """Hard checks; any failure means the résumé can't be used."""
     index = evidence_index(profile)
-    fails = {rule: [] for rule in ("EVD-02", "EVD-03", "EVD-04", "EVD-05", "SKL-02", "FMT-04", "LEN-01")}
+    fails = {rule: [] for rule in ("EVD-02", "EVD-03", "EVD-04", "EVD-05", "SKL-02", "FMT-04", "LEN-01", "LEN-03")}
     for owner, label, b in bullets(resume):
         wrong = [c for c in b["evidence_ids"] if c not in index or index[c][0] != owner]
         if wrong or not b["evidence_ids"]:
@@ -251,17 +263,25 @@ def gates(resume, profile, pdf, rules, limit, today):
     if len(pdf["text"].strip()) < 200:
         fails["FMT-04"].append("the PDF has little or no extractable text")
     if pdf["pages"] > limit:
-        fails["LEN-01"].append(f'{pdf["pages"]} pages but the limit is {limit}; cut the oldest, least relevant bullets (LEN-03)')
+        fails["LEN-01"].append(f'{pdf["pages"]} pages but the limit is {limit}; cut courses, achievements and project bullets first (LEN-03)')
+    roles = {w["id"]: w for w in profile.get("work", [])}
+    work = sorted(resume.get("work", []), key=lambda w: w["start"], reverse=True)
+    for i, w in enumerate(work):
+        lo, hi = bullet_range(i, len(work), config["length"])
+        lo = min(lo, len(roles.get(w["role_id"], {}).get("evidence", [])))
+        if not lo <= len(w["bullets"]) <= hi:
+            fails["LEN-03"].append(f'{w["role_id"]} has {len(w["bullets"])} bullets; this role needs {lo}-{hi}')
     return [{"rule": rule, "ok": not detail, "detail": detail} for rule, detail in fails.items()]
 
 
 def keyword_part(resume, table, config):
-    """Keyword coverage: full credit in context, partial in Skills, coursework or certificates only, minus repetition."""
+    """Keyword coverage: full credit in context, partial when only listed (skills, coursework, certificates, tech stacks), minus repetition."""
     kw, weight = config["keywords"], config["score"]["weights"]["keywords"]
     text = prose(resume)
     listed = [item for c in resume.get("skills", []) for item in c["items"]]
     listed += [c for e in resume.get("education", []) for c in e.get("coursework", [])]
     listed += [c["name"] for c in resume.get("certificates", [])]
+    listed += [t for p in resume.get("projects", []) for t in p.get("tech_stack", [])]
     skills = clean(" ; ".join(listed))
     total = sum(k["weight"] for k in table) or 1
     got, terms, fixes = 0.0, [], []
@@ -277,7 +297,7 @@ def keyword_part(resume, table, config):
             backing = ", ".join(k["evidence"][:3]) or "your role titles"
             fixes.append(fix("KW-04", f'{k["importance"].capitalize()} keyword "{k["term"]}" is backed by {backing} but not used in a bullet or the summary.', True, gain))
         elif gain > 0:
-            fixes.append(fix("KW-04", f'Show "{k["term"]}" in Skills, coursework or certificates, wherever your profile has it.', True, gain))
+            fixes.append(fix("KW-04", f'Show "{k["term"]}" in Skills, coursework, certificates or a project tech stack, wherever your profile has it.', True, gain))
     over = sum(1 for t in terms if t["uses"] > kw["max_repeats"])
     return {"points": max(0.0, weight * got / total - kw["repeat_penalty"] * over), "terms": terms}, fixes
 
@@ -329,6 +349,12 @@ def bullet_part(resume, rules, config):
             ("SUM-04", not phrase, f'The {label} uses the cliché "{phrase}".'),
             ("SUM-02", not PRONOUN.search(text), f"The {label} uses a first-person pronoun."),
         ]
+    summary, most = resume.get("summary", ""), config["length"]["summary_max_chars"]
+    if summary:
+        checks += [
+            ("SUM-02", len(summary) <= most, f"The summary is {len(summary)} characters; keep it to about 2 lines ({most})."),
+            ("SUM-02", not numbers(summary), "The summary has numbers; keep numbers in the bullets."),
+        ]
     each = weight / len(checks)
     fixes = [fix(rule, msg, True, each) for rule, ok, msg in checks if not ok]
     repeated = {v: n for v, n in Counter(verbs).items() if n > cfg["max_verb_repeats"]}
@@ -352,11 +378,11 @@ def parse_part(resume, pdf, config):
             headings_ok = False
             break
     basics = resume["basics"]
-    contact_ok = all(squash(basics[k]) in flat for k in ("email", "linkedin") if basics.get(k))
+    contact_ok = all(squash(short_url(basics[k])) in flat for k in ("email", "linkedin") if basics.get(k))
     if basics.get("phone"):
         contact_ok = contact_ok and re.sub(r"\D", "", basics["phone"]) in re.sub(r"\D", "", raw)
     data = display_data(resume, config)
-    dates = [e["dates"] for key in ("experience", "projects", "education") for e in data[key] if e["dates"]]
+    dates = [e["dates"] for key in ("experience", "education") for e in data[key] if e["dates"]]
     checks = [
         (6, found / len(items) if items else 1.0, "FMT-04", f"{len(items) - found} bullet(s) can't be found in the PDF text."),
         (4, headings_ok, "FMT-02", "Section headings are missing or out of order in the PDF text."),
@@ -394,7 +420,7 @@ def score(resume, analysis, profile, pdf, config, rules, today=None):
     table = keyword_table(analysis, profile, rules, config)
     best, target = ceiling(table, config)
     limit = page_limit(profile, config, today)
-    gate_list = gates(resume, profile, pdf, rules, limit, today)
+    gate_list = gates(resume, profile, pdf, rules, limit, today, config)
     results = {
         "keywords": keyword_part(resume, table, config),
         "impact": impact_part(resume, profile, config),

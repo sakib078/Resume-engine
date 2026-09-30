@@ -14,7 +14,7 @@ The originals in `Resume_cv optimizer workflows/` are read-only.
 - **EVD-01** Never invent experience, qualifications, achievements, metrics, tools, titles or dates. `profile/profile.json` is the only source of truth. [OPT] [JS-T]
 - **EVD-02** ✓ Every bullet cites at least one evidence ID, and every ID comes from the same role or project. [ENG]
 - **EVD-03** ✓ Every number in a bullet appears in the evidence it cites. Numbers in the tagline or summary must be in `summary_evidence_ids`, apart from years of experience the profile supports. Derived figures (such as a % worked out from before/after values) count as new: the user must confirm them and add them to the profile first. [ENG]
-- **EVD-04** ✓ Employers, job titles, dates, degrees, institutions, certificate names, achievement names and links are copied exactly from the profile. Coursework and achievements can leave items out, but never add new ones. [ENG]
+- **EVD-04** ✓ Employers, job titles, dates, degrees, institutions, certificate names, achievement names, project tech stacks and links are copied exactly from the profile. Coursework, achievements and tech stacks can leave items out, but never add new ones. [ENG]
 - **EVD-05** ✓ Nothing that gets rendered contains a placeholder (`[X%]`, `[TBD]`, `XX%`). [ENG, resolves OPT]
 - **EVD-06** If something important is unclear, ask the user at checkpoint 1 before writing it. [JS-T]
 
@@ -29,8 +29,8 @@ The originals in `Resume_cv optimizer workflows/` are read-only.
 
 ## SUM: Tagline and summary
 - **SUM-01** Tagline: one line under the name. Give the target role family and 2–3 real strengths as a readable phrase, not a pipe-separated keyword list. [OPT]
-- **SUM-02** ✓ Summary: 3–5 sentences in implied first person, with no "I", "me" or "my". [OPT] [ENG]
-- **SUM-03** ✓ The tagline plus summary contain the job title's core words and the top 3 required keywords the profile supports. The summary answers the employer's top problems with the strongest evidence. [JS-G] [OPT]
+- **SUM-02** ✓ Summary: optional (`profile.preferences.summary`). If used: at most 2 lines (`summary_max_chars`) in implied first person, with no "I", "me" or "my" and no numbers. Metrics stay in the bullets; write tool names without versions. It can name the core tech stack and the kind of work. [OPT] [ENG]
+- **SUM-03** ✓ The tagline (plus the summary, if there is one) contains the job title's core words and the top 3 required keywords the profile supports. [JS-G] [OPT]
 - **SUM-04** ✓ No clichés or generic AI wording (`rules/banned-phrases.txt`). [JS-T]
 
 ## BUL: Bullets
@@ -45,7 +45,7 @@ The originals in `Resume_cv optimizer workflows/` are read-only.
 - **BUL-09** If the evidence has no metric, write a concrete bullet (context, then action, then result) without a number. Never use a placeholder. [ENG, resolves OPT vs JS]
 
 ## SKL: Skills section
-- **SKL-01** At most 8 categories, with 4–6 terms each where the profile allows. [OPT]
+- **SKL-01** At most 8 categories, with 4–10 terms each where the profile allows, about one line per category. [OPT] [ENG]
 - **SKL-02** ✓ List only skills that are in the profile. Order categories and terms by how relevant they are to the job. [OPT] [ENG]
 - **SKL-03** If the job uses a different name for one of the profile's skills (a lexicon alias), use the job's name. [ENG]
 
@@ -56,18 +56,18 @@ The originals in `Resume_cv optimizer workflows/` are read-only.
 
 ## FMT: Format and parsing
 - **FMT-01** One column. No tables, text boxes, icons, photos, skill bars, colour sidebars or decoration. [OPT] [JS-G]
-- **FMT-02** ✓ Standard headings in this order: SUMMARY, SKILLS, EXPERIENCE, PROJECTS, EDUCATION, CERTIFICATIONS, ACHIEVEMENTS. Education goes before Experience only for new graduates. [JS-G] [ENG]
+- **FMT-02** ✓ Standard headings in this order: SUMMARY, EXPERIENCE, PROJECTS, EDUCATION, SKILLS, CERTIFICATIONS, ACHIEVEMENTS. Education moves above Experience only when `profile.preferences.new_grad` is true. [JS-G] [ENG]
 - **FMT-03** Nothing important in the page header or footer. [OPT]
 - **FMT-04** ✓ A selectable-text PDF under 2.5 MB, with every bullet readable in the extracted text (Jeff Su's copy-paste test). [JS-G]
 - **FMT-05** ✓ Dates as `Mon YYYY – Mon YYYY` or `Mon YYYY – Present`, right-aligned on the role line. [OPT]
 - **FMT-06** ✓ Left-aligned text with hyphenation and ligatures turned off, so keywords come out whole when the text is extracted. [ENG, resolves OPT "justified"]
-- **FMT-07** Typography: name 22pt bold, centred; headings 10pt bold uppercase, lightly letter-spaced, over a full-width rule; role titles 10.5pt bold; body 10pt serif. [OPT]
-- **FMT-08** ✓ Contact line: email | phone | location | LinkedIn (plus website, GitHub and any profile links), centred under the tagline. [OPT] [JS-G]
+- **FMT-07** Typography, based on your own LaTeX résumé: US Letter, ~0.4 in margins, Times-style serif. Name 24pt bold small caps, centred, with the headline in italics below; section headings 12pt small caps over a thin full-width rule; role titles 11pt bold with dates right-aligned, and company and location in 10pt italics below; bullets, skills and project lines 10pt. [OPT] [ENG]
+- **FMT-08** ✓ Contact line: location | phone | email | website | GitHub | LinkedIn (plus any profile links), centred under the headline. Links show without "https://". [OPT] [JS-G]
 
 ## LEN: Length and order
 - **LEN-01** ✓ One page for under 10 years' experience; two pages at most from 10 years. [OPT]
 - **LEN-02** Reverse chronological order. [OPT]
-- **LEN-03** 4–6 bullets for recent or relevant roles, 1–3 for older ones. Cut the oldest, least relevant bullets first. [OPT] [ENG]
+- **LEN-03** ✓ Bullets per role, counting from the most recent: role 1 gets 4–6. Role 2 gets 2–4, and so does role 3 when there are only 3 roles. With 4 or more roles, role 3 onward gets 1–2. A role with fewer evidence items than its minimum uses all of them. When the page is full, cut courses, achievements and project bullets before role bullets. When there's room, add role bullets up to their maximum before adding project bullets. The ranges live in `config.toml`. [OPT] [ENG]
 - **LEN-04** Final file name: `First_Last_Company_Role.pdf`. [ENG]
 
 ## Resolved conflicts
@@ -77,7 +77,7 @@ The originals in `Resume_cv optimizer workflows/` are read-only.
 | Missing metrics | `[X%]` placeholders | Ask first | Ask at checkpoint 1; a placeholder can never reach the PDF (EVD-05) |
 | Keyword volume | Up to 50 skills, full gap coverage | Moderate coverage beats maximum; map, don't stuff | Only keywords the evidence supports; 8 × 6 skills at most; each keyword at most 3 times (KW-02, KW-03, SKL-01) |
 | Achievements snapshot | 2-column table | One column, no tables | Dropped (FMT-01) |
-| Headings | "Core Competencies", "Profile Summary", "Professional Experience" | Standard headings | Summary, Skills, Experience, Projects, Education, Certifications, Achievements (FMT-02) |
-| Summary voice | First person | — | Implied first person (SUM-02) |
+| Headings | "Core Competencies", "Profile Summary", "Professional Experience" | Standard headings | Summary, Experience, Projects, Education, Skills, Certifications, Achievements (FMT-02) |
+| Summary | 3–5 sentences, first person | — | Optional; at most 2 lines, no numbers, implied first person (SUM-02) |
 | Alignment | "Justified paragraphs" | Text must parse cleanly | Left-aligned; hyphenation and ligatures off (FMT-06) |
 | LinkedIn-only sections | Photo, banner, featured, recommendations, activity, 220-character headline | — | Dropped; the headline becomes the tagline (SUM-01) |

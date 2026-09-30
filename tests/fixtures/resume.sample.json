@@ -12,7 +12,7 @@
     {"label": "Portfolio", "url": "alexmorgan.example.com"}
   ],
   "tagline": "Data analyst turning operational data into self-serve Power BI reporting with SQL, dbt and Snowflake",
-  "summary": "Data analyst with 7 years of experience building the reporting and data models that operations and finance teams rely on. Cut weekly sales reporting from 6 hours to 45 minutes and introduced the first dbt star schema, giving finance and product one definition of active customer. Comfortable owning a problem end to end, from scoping with stakeholders to explaining results to non-technical leaders.",
+  "summary": "Data analyst building the reporting and data models that operations and finance teams rely on, with dbt, Snowflake and Power BI. Owns problems end to end, from scoping with stakeholders to explaining results.",
   "summary_evidence_ids": ["brightcart-01", "brightcart-04", "brightcart-03"],
   "education_first": false,
   "skills": [
@@ -55,6 +55,7 @@
     {
       "project_id": "ticket-triage",
       "name": "LLM support-ticket triage",
+      "tech_stack": ["Python", "Large Language Models"],
       "link": "github.com/alexmorgan-example/ticket-triage",
       "start": "2024-05",
       "end": "2024-07",

@@ -64,6 +64,35 @@ def test_unknown_achievement_or_link_fails_gate(resume, analysis, profile, confi
     assert "Imaginary Award 2024" in detail and "blog.example.com" in detail
 
 
+def test_unknown_project_tech_fails_gate(resume, analysis, profile, config, rules, make_pdf):
+    bad = copy.deepcopy(resume)
+    bad["projects"][0]["tech_stack"].append("Kubernetes")
+    report = run(bad, analysis, profile, config, rules, make_pdf)
+    assert "Kubernetes" in " ".join(gate(report, "EVD-04")["detail"])
+
+
+def test_resume_without_summary_passes(resume, analysis, profile, config, rules, make_pdf):
+    lean = copy.deepcopy(resume)
+    del lean["summary"], lean["summary_evidence_ids"]
+    report = run(lean, analysis, profile, config, rules, make_pdf)
+    assert all(g["ok"] for g in report["gates"]), report["gates"]
+    assert report["passed"], report["fixes"]
+
+
+def test_role_bullets_outside_range_fail_gate(resume, analysis, profile, config, rules, make_pdf):
+    bad = copy.deepcopy(resume)
+    bad["work"][0]["bullets"] = bad["work"][0]["bullets"][:3]
+    report = run(bad, analysis, profile, config, rules, make_pdf)
+    assert not gate(report, "LEN-03")["ok"]
+
+
+def test_summary_with_numbers_gets_a_fix(resume, analysis, profile, config, rules, make_pdf):
+    edited = copy.deepcopy(resume)
+    edited["summary"] = "Data analyst who cut weekly sales reporting from 6 hours to 45 minutes."
+    report = run(edited, analysis, profile, config, rules, make_pdf)
+    assert any(f["rule"] == "SUM-02" and "numbers" in f["fix"] for f in report["fixes"])
+
+
 def test_repeated_keyword_loses_points(resume, analysis, profile, config, rules, make_pdf):
     clean = run(resume, analysis, profile, config, rules, make_pdf)
     stuffed = copy.deepcopy(resume)

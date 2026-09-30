@@ -11,7 +11,8 @@
     "target_roles": ["Full-Stack Developer", "Applied AI Engineer"],
     "page_limit": "auto",
     "spelling": "auto",
-    "new_grad": true
+    "new_grad": true,
+    "summary": false
   },
   "about": {
     "role": "Full-stack developer / applied AI",
