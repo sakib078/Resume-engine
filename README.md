@@ -47,6 +47,11 @@ job post + company note
 
 ![Architecture: skills, scripts, rules, contracts and your data](docs/architecture.svg)
 
+## Sample output
+A fictional profile tailored to a fictional Data Analyst job at Northwind Logistics; no real person or company. It scored **97.5/100** and leads with Power BI reporting speed, pipeline reliability and the dbt star schema. Click the preview to open the PDF.
+
+<p align="center"><a href="docs/samples/alex-morgan-data-analyst.pdf"><img src="docs/samples/alex-morgan-data-analyst.png" alt="Sample résumé: Alex Morgan, Data Analyst" width="600"></a></p>
+
 ## The one rule: nothing made up
 Every line on the résumé points to a fact in your profile, and every number must match that fact. The code checks this, and if one line fails, the résumé is blocked. If the job asks for something you don't have, the report lists it as a gap. It is never added.
 
@@ -83,7 +88,7 @@ resume-engine/
 ├── AGENTS.md      start here: instructions for the AI agent
 ├── CLAUDE.md      points Claude Code to AGENTS.md
 ├── config.toml    score weights, target, paper size, fonts
-├── docs/          the diagrams in this README
+├── docs/          diagrams and sample résumés for this README
 ├── skills/        the 6 AI steps, one SKILL.md each
 ├── rules/         rulebook, action verbs, banned phrases, keyword list
 ├── schemas/       the shape every JSON file must have
